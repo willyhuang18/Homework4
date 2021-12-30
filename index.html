@@ -13,14 +13,17 @@
         <div class="container">
           <h1>Code Quiz Challenge </h1>
           <button class="btn">Hight Score</button>
-          <div>
-            <h4>Timer: <span>75</span></h4>
+          <div class="timer">
+            <h4 id="timereverse">Timer: <span id ="timer">75</span></h4>
           </div>
-        <div>
-            <p >Try to answer the following code-related questions within the time limit. <br>Keep in mind that incorrect answers will penalize your score time by 15 seconds.
+          <div class="quiz" id="questions">
+            <h2 class="text" id="title"></h2>
+            <div class ="answers" id="answers"></div>
+            <h1 id="alert"></h1>
+          </div>
+        <div class="content"  >
+            <p id="info">Try to answer the following code-related questions within the time limit. <br>Keep in mind that incorrect answers will penalize your score time by 15 seconds.
                 </p>
-            </div>
-          <div class="card-footer">
             <button  class="btn" id= "btn-start">Start Quiz</button>
         </div>
       </div>

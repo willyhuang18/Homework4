@@ -25,9 +25,15 @@ body {
   color: hsl(206, 17%, 28%);
   
 }
+.timer{
+  display: none;
+}
 
 p {
     text-align: center;
+}
+.quiz{
+  display: none;
 }
 
 .card-footer {
