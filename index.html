@@ -9,23 +9,32 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="container">
-          <h1>Code Quiz Challenge </h1>
-          <button class="btn">Hight Score</button>
+    <div class="start">
+       <h1>Code Quiz Challenge </h1>
+        <button>Start</button>
+    </div>
+    <div class="quiz">
+        <header>
+          <div class="title">Quiz</div>
           <div class="timer">
-            <h4 id="timereverse">Timer: <span id ="timer">75</span></h4>
+            <div id="left">Time left: </div>
+            <div id="second">75</div>
           </div>
-          <div class="quiz" id="questions">
-            <h2 class="text" id="title"></h2>
-            <div class ="answers" id="answers"></div>
-            <h1 id="alert"></h1>
-          </div>
-        <div class="content"  >
-            <p id="info">Try to answer the following code-related questions within the time limit. <br>Keep in mind that incorrect answers will penalize your score time by 15 seconds.
-                </p>
-            <button  class="btn" id= "btn-start">Start Quiz</button>
-        </div>
+          <div id="line"></div>
+        </header>
+        <section>
+          <div class="question"></div>
+        </section>
+        <footer>
+          <button class="nextquestion">Next Question</button>
+        </footer>
+    </div>
+    <div class="result">
+      <div class="finish">You've finish the quizzes</div>
+      <div id="score"></div>
+      <div class="button">
+        <button id="restart">Retake the Quiz</button>
+        <button id="quit">Quit</button>
       </div>
     </div>
 
