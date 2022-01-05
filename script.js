@@ -15,7 +15,18 @@ var currentindex = 0;
 // make score variable equal 0 in order to add up for the final score
 var score = 0;
 // Array of options for user to answers
-var questions = [{}];
+var questions = [{
+  title: "Which of the following is true about variable naming conventions in JavaScript?",
+  choices:["JavaScript variable names must begin with a letter or the underscore character." ,"JavaScript variable names are case sensitive.","Both of the above.","None of the above."], 
+  answers: "Both of the above."},
+  
+  { 
+    title: "Which of the following is a valid type of function javascript supports",
+  choices:["named function" ,"anonymous function","Both of the above.","None of the above."], 
+  answers: "Both of the above."
+
+  }
+];
     
 
 //onclick event causes the quiz start
@@ -64,3 +75,34 @@ function showQuestion(index){
     button.addEventListener("click", displaynextQuestion)
   });
 }
+
+// declare function for next question to be display
+function displaynextQuestion(e){
+    if(currentindex < questions.length){
+    currentindex++
+      // check if the answer is wrong or right
+        correction(e.target.value == questions.answer)
+        answers.innerHTML=""}}
+
+
+  // declare correct function to notice the user's answer wrong or not
+function correction(response){
+
+  alert.style.display = "block";
+  // create 'p' for text content to display
+  var p = document.createElement("p");
+  alert.appendChild(p);
+    if(response){
+      p.textContent = "Good";
+    }else {
+        p.textContent ="Wrong"
+        // substract time if the user answer it wrong
+        count = count -15
+        timer.innerHTML = count
+    }
+    // execution of a callback function
+    setTimeout(function(){
+        alert.innerText=""
+        }, 1000);
+
+    }
