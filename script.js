@@ -130,7 +130,7 @@ function endGame(){
   result.classList.add("activeResult");
   console.log("hello");
 }
-
+//event if user want to quit the game
 quit.addEventListener("click", location.reload);
-
+//event if user want to retake the quiz
 retake.addEventListener("click", showQuestion)
