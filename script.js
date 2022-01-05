@@ -3,11 +3,12 @@ var quizQuestions = document.getElementById("question");
 //same as the timer, make it as countdown
 var timer = document.querySelector(".timer");
 //variable start is for the trigger the process of the code
-var start = document.querySelector(".start button");
+var start = document.querySelector(".start");
+var startbtn = document.querySelector(".start button");
 var sec = document.getElementById("time");
 var quiz = document.querySelector(".quiz");
 var left = document.getElementById("left");
-var alert =document.getElementById("alert");
+var alerts =document.getElementById("alert");
 var answers = document.getElementById("answers");
 //making the empty variable to make sure initiate all the variables to empty value
 var nextQuestions;
@@ -32,9 +33,10 @@ var questions = [{
 var questionsAnswer = questions.answers;
 
 //onclick event causes the quiz start
-start.onclick = () =>{
+startbtn.onclick = () =>{
 // add the css class for the quiz element to be shown
     quiz.classList.add("activeQuiz");
+    start.classList.add("active");
 // convert questions easily comparisons
       quizQuestions= questions[currentindex];
       // execute the function to call on it
@@ -52,10 +54,11 @@ function time(){
          count--;
          if (count == -1){
           //  set the time content to empty string when it hit 0
-          left.textContent='';
+          window.alert("times!")
           //  use clearInterval to stop the time
             clearInterval(times);
             // return the first page, or reload window
+            location.reload();
         }
 
 }
@@ -73,7 +76,9 @@ function showQuestion(questionArray){
       //append it to the choices
       answers.appendChild(button)
       //also need addEventListener to display next question
-      button.addEventListener("click", () => {
+      button.addEventListener("click", (e) => {
+        //answer checker
+        correction(e.target.value === questionArray[currentindex].answers)
       currentindex++
       answers.innerHTML=""
       showQuestion(questions)
@@ -81,23 +86,25 @@ function showQuestion(questionArray){
   });
 }
 
+
   // declare correct function to notice the user's answer wrong or not
 function correction(response){
-  alert.style.display = "block";
+  alerts.style.display = "block";
   // create 'p' for text content to display
   var p = document.createElement("p");
-  alert.appendChild(p);
+  alerts.appendChild(p);
     if(response){
-      p.textContent = "Good";
+      p.textContent = "Correct";
     }else {
         p.textContent ="Wrong"
         // substract time if the user answer it wrong
         count = count - 15
-        timer.innerHTML = count
     }
-    // execution of a callback function
+    // setting timeout function 
     setTimeout(function(){
-        alert.innerText=""
+        alerts.innerText=""
         }, 1000);
 
     }
+
+
