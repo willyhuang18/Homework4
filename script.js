@@ -14,15 +14,16 @@ var answers = document.getElementById("answers");
 var nextQuestions;
 var currentindex = 0;
   // set the time to be 75 sec
-var count = 75;
+var count = 1;
 // make score variable equal 0 in order to add up for the final score
 var score = [];
 // Array of options for user to answers
 var questions = [{}];
 // var questionsAnswer = questions.answers;
 //set variable to localStorage to save userData
-var allScore = JSON.parse(localStorage);
+var allScore = JSON.parse(localStorage.getItem("userData"));
 var submitbtn = document.querySelector(".submit");
+var result = document.querySelectorAll(".result")
 
 
 //onclick event causes the quiz start
@@ -30,6 +31,7 @@ startbtn.onclick = () =>{
 // add the css class for the quiz element to be shown
     quiz.classList.add("activeQuiz");
     start.classList.add("active");
+    result.classList.add("activeResult")
 // convert questions easily comparisons
     quizQuestions= questions[currentindex];
       // execute the function to call on it
@@ -51,7 +53,8 @@ function time(){
           //  use clearInterval to stop the time
             clearInterval(times);
             // return the first page, or reload window
-            location.reload();
+            endGame();
+
         }
 
 }
@@ -118,3 +121,10 @@ submitbtn.addEventListener("click", ()=>{
   var input = document.querySelector(".input")
   userScore(input)
 })
+
+//add endgame function for all the question is answered
+function endGame(){
+  quiz.classList.remove("activeQuiz"); 
+  result.classList.add("activeResult");
+  console.log("hello");
+}
