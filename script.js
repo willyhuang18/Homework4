@@ -22,7 +22,7 @@ var questions = [{}];
 // var questionsAnswer = questions.answers;
 //set variable to localStorage to save userData
 var allScore = JSON.parse(localStorage);
-
+var submitbtn = document.querySelector(".submit");
 
 
 //onclick event causes the quiz start
@@ -112,3 +112,9 @@ function userScore(a , b){
   //save the data into localStorage and stringfify the score
   localStorage.setItem("userData", JSON.stringify(score));
 }
+
+//add eventlistenter for submit user data
+submitbtn.addEventListener("click", ()=>{
+  var input = document.querySelector(".input")
+  userScore(input)
+})
