@@ -12,6 +12,8 @@ var answers = document.getElementById("answers");
 //making the empty variable to make sure initiate all the variables to empty value
 var nextQuestions;
 var currentindex = 0;
+  // set the time to be 75 sec
+var count = 75;
 // make score variable equal 0 in order to add up for the final score
 var score = 0;
 // Array of options for user to answers
@@ -21,13 +23,13 @@ var questions = [{
   answers: "Both of the above."},
   
   { 
-    title: "Which of the following is a valid type of function javascript supports",
+  title: "Which of the following is a valid type of function javascript supports",
   choices:["named function" ,"anonymous function","Both of the above.","None of the above."], 
   answers: "Both of the above."
 
   }
 ];
-    
+var questionsAnswer = questions.answers;
 
 //onclick event causes the quiz start
 start.onclick = () =>{
@@ -36,7 +38,7 @@ start.onclick = () =>{
 // convert questions easily comparisons
       quizQuestions= questions[currentindex];
       // execute the function to call on it
-        showQuestion(quizQuestions)
+        showQuestion(questions)
 // execute the time function to start countdown
     time()
 }
@@ -46,8 +48,6 @@ start.onclick = () =>{
 var times = setInterval(time, 1000)
 // countdown function for the quiz
 function time(){
-  // set the time to be 75 sec
-  var count = 75;
     left.innerText= count + " sec left";
          count--;
          if (count == -1){
@@ -55,39 +55,34 @@ function time(){
           left.textContent='';
           //  use clearInterval to stop the time
             clearInterval(times);
+            // return the first page, or reload window
         }
 
 }
 
 // display the function for the question, and giving index to initiate 
-function showQuestion(index){
-    quizQuestions.innerText = index.title;
+function showQuestion(questionArray){
+    document.getElementById("question").innerText = questionArray[currentindex].title;
     // use the foreach function make sure the question choice is display
-    index.choices.forEach(element => {
+    questionArray[currentindex].choices.forEach(element => {
       // make sure the choice is clickable, so create a 'button' for each of them
-     var button =document.createElement("button")
-    //  attach them with css style
-    button.className="answers"
-    button.innerText=element
-    //append it to the choices
-    answers.appendChild(button)
-    //also need addEventListener to display next question
-    button.addEventListener("click", displaynextQuestion)
+      var button =document.createElement("button")
+      //  attach them with css style
+      button.className="answers"
+      button.innerText=element
+      //append it to the choices
+      answers.appendChild(button)
+      //also need addEventListener to display next question
+      button.addEventListener("click", () => {
+      currentindex++
+      answers.innerHTML=""
+      showQuestion(questions)
+    })
   });
 }
 
-// declare function for next question to be display
-function displaynextQuestion(e){
-    if(currentindex < questions.length){
-    currentindex++
-      // check if the answer is wrong or right
-        correction(e.target.value == questions.answer)
-        answers.innerHTML=""}}
-
-
   // declare correct function to notice the user's answer wrong or not
 function correction(response){
-
   alert.style.display = "block";
   // create 'p' for text content to display
   var p = document.createElement("p");
@@ -97,7 +92,7 @@ function correction(response){
     }else {
         p.textContent ="Wrong"
         // substract time if the user answer it wrong
-        count = count -15
+        count = count - 15
         timer.innerHTML = count
     }
     // execution of a callback function
