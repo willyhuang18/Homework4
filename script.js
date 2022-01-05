@@ -24,6 +24,9 @@ var questions = [{}];
 var allScore = JSON.parse(localStorage.getItem("userData"));
 var submitbtn = document.querySelector(".submit");
 var result = document.querySelectorAll(".result")
+//give variable to quit and retake button
+var quit = document.getElementById("quit");
+var retake = document.getElementById("restart");
 
 
 //onclick event causes the quiz start
@@ -31,7 +34,6 @@ startbtn.onclick = () =>{
 // add the css class for the quiz element to be shown
     quiz.classList.add("activeQuiz");
     start.classList.add("active");
-    result.classList.add("activeResult")
 // convert questions easily comparisons
     quizQuestions= questions[currentindex];
       // execute the function to call on it
@@ -128,3 +130,7 @@ function endGame(){
   result.classList.add("activeResult");
   console.log("hello");
 }
+
+quit.addEventListener("click", location.reload);
+
+retake.addEventListener("click", showQuestion)
