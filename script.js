@@ -14,7 +14,7 @@ var answers = document.getElementById("answers");
 var nextQuestions;
 var currentindex = 0;
   // set the time to be 75 sec
-var count = 1;
+var count = 75;
 // make score variable equal 0 in order to add up for the final score
 var score = [];
 // Array of options for user to answers
@@ -78,6 +78,7 @@ function showQuestion(questionArray){
         //answer checker
         correction(e.target.value === questionArray[currentindex].answers)
       currentindex++
+      //empty the answer for the next question
       answers.innerHTML=""
       showQuestion(questions)
     })
@@ -120,7 +121,7 @@ function userScore(a , b){
 
 //add eventlistenter for submit user data
 submitbtn.addEventListener("click", ()=>{
-  var input = document.querySelector(".input")
+  var input = document.getElementById("input").value
   userScore(input)
 })
 
@@ -131,6 +132,5 @@ function endGame(){
   console.log("hello");
 }
 //event if user want to quit the game
-quit.addEventListener("click", location.reload);
-//event if user want to retake the quiz
-retake.addEventListener("click", showQuestion)
+quit.addEventListener("click", ()=>
+{location.reload()});
