@@ -17,23 +17,25 @@ var currentindex = 0;
 var count = 75;
 // make score variable equal 0 in order to add up for the final score
 var score = [];
+var quizScore =0;
 // Array of options for user to answers
 var questions = [{}];
 // var questionsAnswer = questions.answers;
 //set variable to localStorage to save userData
 var allScore = JSON.parse(localStorage.getItem("userData"));
 var submitbtn = document.querySelector(".submit");
-var result = document.querySelectorAll(".result")
+var result = document.querySelector(".result")
 //give variable to quit and retake button
 var quit = document.getElementById("quit");
 var retake = document.getElementById("restart");
 
-
+//setting display for result
+document.querySelector(".result").setAttribute('style', 'display:none');
 //onclick event causes the quiz start
 startbtn.onclick = () =>{
 // add the css class for the quiz element to be shown
     quiz.classList.add("activeQuiz");
-    start.classList.add("active");
+    start.classList.add("activeStart");
 // convert questions easily comparisons
     quizQuestions= questions[currentindex];
       // execute the function to call on it
@@ -55,7 +57,6 @@ function time(){
           //  use clearInterval to stop the time
             clearInterval(times);
             // return the first page, or reload window
-            endGame();
 
         }
 
@@ -63,6 +64,11 @@ function time(){
 
 // display the function for the question, and giving index to initiate 
 function showQuestion(questionArray){
+    //if statement for when it hit the last question, run endgame()
+    if(currentindex == questionArray.length){
+      endGame();
+      return;
+    }
     document.getElementById("question").innerText = questionArray[currentindex].title;
     // use the foreach function make sure the question choice is display
     questionArray[currentindex].choices.forEach(element => {
@@ -76,7 +82,7 @@ function showQuestion(questionArray){
       //also need addEventListener to display next question
       button.addEventListener("click", (e) => {
         //answer checker
-        correction(e.target.value === questionArray[currentindex].answers)
+        correction(element === questionArray[currentindex].answer)
       currentindex++
       //empty the answer for the next question
       answers.innerHTML=""
@@ -94,6 +100,7 @@ function correction(response){
   alerts.appendChild(p);
     if(response){
       p.textContent = "Correct";
+      quizScore++;
     }else {
         p.textContent ="Wrong"
         // substract time if the user answer it wrong
@@ -128,8 +135,8 @@ submitbtn.addEventListener("click", ()=>{
 //add endgame function for all the question is answered
 function endGame(){
   quiz.classList.remove("activeQuiz"); 
-  result.classList.add("activeResult");
-  console.log("hello");
+  //remove the style
+  document.querySelector(".result").removeAttribute('style', 'display:none');
 }
 //event if user want to quit the game
 quit.addEventListener("click", ()=>

@@ -15,7 +15,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
-.start.active{
+
+.start.activeStart,
+.result.active{
   display: none;
 }
 
@@ -30,8 +32,7 @@ body {
     0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.quiz.activeQuiz,
-.result.activeResult{
+.quiz.activeQuiz{
   opacity: 1;
     z-index: 5;
     pointer-events: auto;
@@ -94,12 +95,6 @@ header{
   width: 145px;
 }
 
-#left{
-  font-weight: 400;
-  font-size: 17px;
-  user-select: none;
-}
-
 
 section{
   padding: 25px 30px 20px 30px;
@@ -130,6 +125,3 @@ section .answers :hover{
   border: 1px solid #b8daff;
 }
 
-.result{
-  display: none;
-}
