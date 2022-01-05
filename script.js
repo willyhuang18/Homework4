@@ -16,21 +16,14 @@ var currentindex = 0;
   // set the time to be 75 sec
 var count = 75;
 // make score variable equal 0 in order to add up for the final score
-var score = 0;
+var score = [];
 // Array of options for user to answers
-var questions = [{
-  title: "Which of the following is true about variable naming conventions in JavaScript?",
-  choices:["JavaScript variable names must begin with a letter or the underscore character." ,"JavaScript variable names are case sensitive.","Both of the above.","None of the above."], 
-  answers: "Both of the above."},
-  
-  { 
-  title: "Which of the following is a valid type of function javascript supports",
-  choices:["named function" ,"anonymous function","Both of the above.","None of the above."], 
-  answers: "Both of the above."
+var questions = [{}];
+// var questionsAnswer = questions.answers;
+//set variable to localStorage to save userData
+var allScore = JSON.parse(localStorage);
 
-  }
-];
-var questionsAnswer = questions.answers;
+
 
 //onclick event causes the quiz start
 startbtn.onclick = () =>{
@@ -38,11 +31,11 @@ startbtn.onclick = () =>{
     quiz.classList.add("activeQuiz");
     start.classList.add("active");
 // convert questions easily comparisons
-      quizQuestions= questions[currentindex];
+    quizQuestions= questions[currentindex];
       // execute the function to call on it
-        showQuestion(questions)
+     showQuestion(questions)
 // execute the time function to start countdown
-    time()
+      time()
 }
 
 
@@ -107,4 +100,15 @@ function correction(response){
 
     }
 
-
+//declare a function for User score
+function userScore(a , b){
+  //set local variable for user data
+  var userData ={
+    user: a,
+    score: b
+  };
+  //add the score into final score
+  score.push(userData);
+  //save the data into localStorage and stringfify the score
+  localStorage.setItem("userData", JSON.stringify(score));
+}

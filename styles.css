@@ -130,4 +130,7 @@ section .answers :hover{
   border: 1px solid #b8daff;
 }
 
-.result{display: none;}
+.result{
+  display: none;
+}
+
