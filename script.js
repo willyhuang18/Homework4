@@ -47,6 +47,7 @@ var quit = document.getElementById("quit");
 var retake = document.getElementById("retake");
 //variable global score
 var highScore =document.getElementById("highScore");
+var clear =document.getElementById("clear");
 
 //setting display for result
 document.querySelector(".result").setAttribute('style', 'display:none');
@@ -168,7 +169,11 @@ quit.addEventListener("click", ()=>
 retake.addEventListener("click", function(){
   location.href = "index.html"
 });
-
+//event listener for clear the existing score
+clear.addEventListener("click", function(){
+  highScore.innerHTML="";
+  localStorage.clear();
+})
 //declare displayscore function
 function displayScore(){
   if(allScore !== null){
