@@ -44,12 +44,17 @@ var submitbtn = document.querySelector(".submit");
 var result = document.querySelector(".result")
 //give variable to quit and retake button
 var quit = document.getElementById("quit");
-var retake = document.getElementById("restart");
+var retake = document.getElementById("retake");
+//variable global score
+var highScore =document.getElementById("highScore");
 
 //setting display for result
 document.querySelector(".result").setAttribute('style', 'display:none');
 //onclick event causes the quiz start
 startbtn.onclick = () =>{
+  if(allScore !==null) {
+    score = allScore;
+}
 // add the css class for the quiz element to be shown
     quiz.classList.add("activeQuiz");
     start.classList.add("activeStart");
@@ -158,3 +163,27 @@ function endGame(){
 //event if user want to quit the game
 quit.addEventListener("click", ()=>
 {location.reload()});
+
+//eventListener for the retaking
+retake.addEventListener("click", function(){
+  location.href = "index.html"
+});
+
+//declare displayscore function
+function displayScore(){
+  if(allScore !== null){
+    var list = document.createElement("ol");
+    for (var i = 0; i < allScore.length; i++) {
+      var initials = allScore[i].user;
+      var scores = allScore[i].score;
+      var entry = document.createElement("li");
+      entry.innerHTML = initials + " - " + scores
+      list.appendChild(entry);
+    }
+    highScore.appendChild(list);      
+    console.log(allScore);
+
+    }
+  }
+
+  displayScore();
