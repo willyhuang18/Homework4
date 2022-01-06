@@ -32,7 +32,7 @@ This application contains the information about I had learn, and the work I have
 
 
 # Deployed Link
-
+https://willyhuang18.github.io/Quiz-Challenge/
 
 # Authors
 PangTa Huang
