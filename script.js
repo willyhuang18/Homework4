@@ -18,9 +18,26 @@ var count = 75;
 // make score variable equal 0 in order to add up for the final score
 var score = [];
 var quizScore =0;
-// Array of options for user to answers
-var questions = [{}];
-// var questionsAnswer = questions.answers;
+// Random question for user to answers
+var questions = [ {title: "When you have enough money to purchase crypto, what would you all in with?",
+choices: ["Bitcoin","SHIBA","ETH", "None", "Save for future"],
+answer : "ETH"    
+},
+{
+title: "How long would you think to take for seeing an actual Apple Car?",
+choices: ["1 year","2 to 5 years","8 years", "another 10 years"],
+answer : "2 to 5 years"    
+},
+{
+title: "How long you think you will be work as Full Stack after?",
+choices: ["4 months","2 months","a year", "more than one years"],
+answer : "a year"    
+},
+{
+title: "what is your life style current?",
+choices: ["Nomadic","Healthy","Rural","Solo "],
+answer : "Nomadic"    
+}];
 //set variable to localStorage to save userData
 var allScore = JSON.parse(localStorage.getItem("userData"));
 var submitbtn = document.querySelector(".submit");
@@ -57,7 +74,7 @@ function time(){
           //  use clearInterval to stop the time
             clearInterval(times);
             // return the first page, or reload window
-
+            endGame();
         }
 
 }
@@ -80,7 +97,7 @@ function showQuestion(questionArray){
       //append it to the choices
       answers.appendChild(button)
       //also need addEventListener to display next question
-      button.addEventListener("click", (e) => {
+      button.addEventListener("click", () => {
         //answer checker
         correction(element === questionArray[currentindex].answer)
       currentindex++
@@ -129,7 +146,7 @@ function userScore(a , b){
 //add eventlistenter for submit user data
 submitbtn.addEventListener("click", ()=>{
   var input = document.getElementById("input").value
-  userScore(input)
+  userScore(input,quizScore)
 })
 
 //add endgame function for all the question is answered
